@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="zt.js"></script>
+    <script src="rollups/pbkdf2.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var test = getLoginData('zhangsan', '这个可以是密码');
+
+    function result(hash) {
+        console.log(hash);
+    }
+    //    var salt = gensalt(5);
+    //    hashpw("23446", salt, result, function a() {
+    //        console.log(salt);
+    //    });
+    //
+    //    checkpw(
+    //        "23446",
+    //        "$2a$05$uUj6Jlsn3.spIt3pOcVQX.8ka9iL98zMJLmjSEzuvbGnEPP06NUWK",
+    //        function (res) {
+    //            console.log(res);
+    //        },
+    //        function () {
+    //
+    //        })
+    //
+    //    //    var s1 = CryptoJS.HmacSHA256;
+    //    //    console.log(s1);
+    //    var s = CryptoJS.HmacSHA512("mypassword", "6236bc2d-5705-4dc5-a4c6-977e41e3195b");
+    //
+    //    console.log(s.toString());
+    //    var hashInBase64 = CryptoJS.enc.Base64.stringify(s);
+    //    console.log(hashInBase64);
+    //    var hexmiwen = convertToHex(hashInBase64.toString()).toString();
+    //    console.log(hexmiwen);
+
+
+    //    function genen(salt) {
+    //        console.log("收到的盐:" + salt);
+    //        var a = CryptoJS.PBKDF2("password", salt, {keySize: 512 / 32, iterations: 1000});
+    //        return a;
+    //    }
+    //
+    //    var gensalt = (function (callback) {
+    //        var salt = CryptoJS.PBKDF2("username", "password", {keySize: 256 / 32, iterations: 500});
+    //        console.log("制造的盐:" + salt);
+    //        return callback(salt);
+    //    });
+    //    var pwd = gensalt(genen);
+    //    console.log("密文:" + pwd);
+
+    var pwd = '' + CryptoJS.PBKDF2("upass", "uname", {
+            keySize: 512 / 32,
+            iterations: 2000
+        });
+    console.log(pwd)
+
+    var salt2 = gensalt(10);
+    hashpw(pwd, salt2, result, function a() {
+        console.log(salt2);
+    });
+
+    checkpw(
+        "27ae1e5602f2703dcda4abb1177e7cca31ce81df7c939e5a6d30044ae66a719331e5b73bacee5bd8771eeb1729b3661e1f8ae83e1025e19189813887a90c7bba",
+        "$2a$10$v67WC6.9pZ2re0Y.59rBRumUFON5Y3nI1wZz42U3ovY7K6Ugm5Bbq",
+        function (res) {
+            console.log(res);
+        },
+        function () {
+
+        })
+</script>
+</body>
+</html>
